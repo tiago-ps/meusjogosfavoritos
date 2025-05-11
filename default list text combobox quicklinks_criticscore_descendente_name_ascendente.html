@@ -1,0 +1,470 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <title>Avalia&#231;&#227;o da cr&#237;tica</title>
+	<link rel="manifest" href="manifest.webmanifest">
+	<meta name="viewport" content="width=device-width, initial-scale=0.5">
+	<style>
+h2:after,
+.cards .card:after {
+  position: absolute;
+}
+
+h2,
+h2 strong,
+.cards .card
+{
+  position: relative;
+}
+
+h2,
+h2 strong,
+h2 span {
+  vertical-align: middle;
+}
+
+body {
+  background: #24282f;
+  font-family: 'Arial';
+}
+
+.wrapper {
+  padding: 15px;
+}
+
+h2 {
+  padding: 10px;
+  padding-left: 25px;
+  color: #ccc;
+  margin: 0;
+  cursor:pointer;
+}
+
+h2 strong {
+  z-index: 2;
+  background: #24282f;
+  padding: 4px 8px;
+}
+
+h2 span {
+  font-size: 0.7em;
+  color: #aaa;
+  margin-left: 10px;
+}
+
+h2:after {
+  content: '';
+  z-index: 1;
+  bottom: 50%;
+  margin-bottom: -2px;
+  height: 2px;
+  left: 0;
+  right: 0;
+  background: #373d47;
+}
+
+#h2jscript {
+  cursor:pointer;
+}
+.quicklinks {
+  display: flex;
+  flex-flow: row wrap;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.quicklink {
+  margin: 10px;
+}
+
+select#combobselect {
+    background-color:#555;
+    color:#CCC;
+}
+
+#grouplabel {
+   font-size: 20px;
+   color: #CCC;
+}
+
+/* link no underline */
+a {
+  text-decoration: none;
+}
+
+/* unvisited link */
+a:link {
+  color: #CCC;
+}
+/* visited link */
+a:visited {
+  color: #CCC;
+}
+/* mouse over link */
+a:hover {
+  color: #EEE;
+}
+/* selected link */
+a:active {
+  color: #CCC;
+}
+
+.Menu {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+#BackTopButton {
+  display: none; /* Hidden by default */
+  position: fixed; /* Fixed/sticky position */
+  bottom: 20px; /* Place the button at the bottom of the page */
+  right: 30px; /* Place the button 30px from the right */
+  z-index: 99; /* Make sure it does not overlap */
+  border: none; /* Remove borders */
+  outline: none; /* Remove outline */
+  background-color: red; /* Set a background color */
+  color: white; /* Text color */
+  cursor: pointer; /* Add a mouse pointer on hover */
+  padding: 15px; /* Some padding */
+  border-radius: 10px; /* Rounded corners */
+  font-size: 20px; /* Increase font size */
+}
+
+.MenuButton {
+  border: none; /* Remove borders */
+  outline: none; /* Remove outline */
+  background-color: #555;/* Set a background color */
+  color: #ccc; /* Text color */
+  padding: 5px; /* Some padding */
+  border-radius: 4px; /* Rounded corners */
+  font-size: 20px;/* Increase font size */
+  margin-top: 10px;
+  margin-left: 15px;
+  cursor:pointer;
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  text-decoration: none;
+}
+
+.MenuButton:hover {
+  background-color: #666; /* Add a dark-grey background on hover */
+  color: #eee; /* Text color */
+}
+
+#BackTopButton:hover {
+  background-color: #555; /* Add a dark-grey background on hover */
+}
+
+#label {
+   font-size: 18px;
+   color: #CCC;
+   margin: 5px;
+}
+
+#label a {
+   color: #CCC;
+}
+
+/* unvisited link */
+#label a:link {
+  color: #CCC;
+}
+/* visited link */
+#label a:visited {
+  color: #CCC;
+}
+/* mouse over link */
+#label a:hover {
+  color: #EEE;
+}
+/* selected link */
+#label a:active {
+  color: #CCC;
+}
+
+	                                                   /* scrollbars W3C standard that is currently Firefox-only */
+* {
+  scrollbar-width: thin;                               /* small width */
+  scrollbar-color: #888 transparent;                   /* trackbar color + transparant background */
+}
+
+                                                       /* scrollbars on Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  width: 12px;                                         /* small width */
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;                             /* background color track */
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #AAA;                              /* background */
+  border-radius: 20px;                                 /* rounded corner, border */
+  border: 3px solid #888;                              /* add the border */
+}
+
+.detailstable th, td {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+  vertical-align: middle;                              /* align middle */
+  text-align: left;                                    /* align text left */
+}
+
+.tdname {
+  border: 0px;                                         /* no borders on td, th elements */
+  color: #ccc;                                         /* details table text color */
+  vertical-align: middle;                              /* align middle */
+  text-align: left;                                    /* align text left */
+}
+
+.detailstable {
+  width: 100%;                                         /* set to full width of details */
+  padding: 5px;                                        /* add some padding */
+  border-collapse: collapse;						   /* to make rows collapse if they are hidden using search */
+  table-layout: fixed;
+}
+
+input{
+  display: block;
+  background: #fff;
+  padding: .6rem;
+  border-radius: 0.3rem;
+  width: 300px;
+  border: 0.1rem solid #BDBDBD;
+  outline: none;
+  height: 1rem;
+}
+
+input:hover{
+	border: 0.1rem solid #0F52BA !important;
+}
+
+#searchbutton{
+  display: block;
+  background: #fff;
+  padding: .6rem;
+  border-radius: 0.3rem;
+  width: 175px;
+  border: 0.1rem solid #BDBDBD;
+  outline: none;
+  height: 2rem;
+}
+
+#searchbutton:hover{
+	border: 0.1rem solid #0F52BA !important;
+}
+  </style>
+  <script>
+	function search() {
+		var input, filter, games, game, i, j, txtValue, fragment, parentElement, wrapper, quicklinks, quicklink, quicklinkid, cards, needhide, numvisible, quicklinklinks, header, quicklinkvalue;
+		input = document.getElementById("search");
+		filter = input.value.toUpperCase();
+		wrapper = document.getElementById("wrapper");
+		parentElement = wrapper.parentElement;
+		fragment = document.createDocumentFragment();
+		fragment.appendChild(wrapper.cloneNode(true));
+		wrapper.remove();
+		games = fragment.childNodes[0].getElementsByClassName("tdname");
+		i = games.length - 1;
+		
+		while (i >= 0 ) {
+			game = games[i];
+			txtValue = game.childNodes[0].innerText;
+			if (txtValue.toUpperCase().indexOf(filter) > -1) {
+				game.parentElement.style.display = "";
+			} else {
+				game.parentElement.style.display = "none";
+			}
+			i--;
+		}
+
+		quicklinks = fragment.childNodes[0].querySelectorAll("tr[id^='quicklink-']")
+		i = quicklinks.length - 1;
+		while (i >= 0) {
+			quicklink = quicklinks[i];
+			quicklinkid = quicklink.id;
+			cards = fragment.getElementById(quicklinkid.replace("quicklink-", ""));
+			needhide = true;
+			if(cards)
+			{
+				j = cards.children.length -1
+				numvisible = 0;
+				while (j >= 0)
+				{
+					if (cards.children[j].style.display == "")
+					{
+						needhide = false;
+						numvisible++;
+					}
+					j--;
+				}
+
+				quicklinklinks = fragment.childNodes[0].querySelectorAll("option[value=\"#" + quicklinkid.replace(/["\\]/g, '\\$&') + "\"]")
+				if (needhide)
+				{
+					cards.style.display = "none";
+					quicklink.style.display = "none";
+					quicklink.children[0].children[0].children[0].innerHTML = "&#x25BA;";
+					quicklink.children[0].children[0].children[0].style.color = "#790000";
+					quicklink.children[0].children[0].children[1].children[0].innerText = "( " + numvisible.toString() + " )";
+					if (quicklinklinks.length == 1)
+					{						
+						quicklinklinks[0].style.display = "none";
+					}
+				} else {
+					cards.style.display = "";
+					quicklink.style.display = "";
+					quicklink.children[0].children[0].children[0].innerHTML = "&#x25BC;";
+					quicklink.children[0].children[0].children[0].style.color = "#007962";
+					quicklink.children[0].children[0].children[1].children[0].innerText = "( " + numvisible.toString() + " )";
+					if (quicklinklinks.length == 1)
+					{						
+						quicklinklinks[0].style.display = "";
+					}
+				}
+			}
+			i--;
+		}
+
+		parentElement.appendChild(fragment.childNodes[0]);
+
+		//have to renable this
+		const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+		observer.observe();
+
+		var input = document.getElementById("search");
+
+		// Execute a function when the user releases a key on the keyboard
+		input.addEventListener("keyup", function(event) 
+		{
+			// Number 13 is the "Enter" key on the keyboard
+			if (event.keyCode === 13) 
+			{
+				// Cancel the default action, if needed
+				event.preventDefault();
+				// Trigger the button element with a click
+				document.getElementById("searchbutton").click();
+			}
+		});
+	}
+  </script>
+  </head>
+  <body>
+    <button onclick="topFunction()" id="BackTopButton" title="Go to top">Top</button>
+    <div class="wrapper" id="wrapper">
+      <h2><strong>MENU PRINCIPAL - Avalia&#231;&#227;o da cr&#237;tica<span>(Avaliação da crítica descendente / Nome ascendente)</span></strong></h2>
+      <div class="Menu"><a Class="MenuButton" href="index.html">Nome ▲</A><a Class="MenuButton" href="default%20list%20text%20combobox%20quicklinks_library_ascendente_name_ascendente.html">Biblioteca ▲</A><a Class="MenuButton" href="default%20list%20text%20combobox%20quicklinks_agerating_ascendente_name_ascendente.html">Classifica&#231;&#227;o Indicativa ▲</A><a Class="MenuButton" href="default%20list%20text%20combobox%20quicklinks_criticscore_descendente_name_ascendente.html">Avalia&#231;&#227;o da cr&#237;tica ▼</A><a Class="MenuButton" href="default%20list%20text%20combobox%20quicklinks_category_ascendente_name_ascendente.html">Categoria ▲</A><a Class="MenuButton" href="default%20list%20text%20combobox%20quicklinks_genre_ascendente_name_ascendente.html">G&#234;nero ▲</A><a Class="MenuButton" href="default%20list%20text%20combobox%20quicklinks_releasedate_descendente_name_ascendente.html">Data de Lan&#231;amento ▼</A><a Class="MenuButton" href="default%20list%20text%20combobox%20quicklinks_tag_ascendente_name_ascendente.html">Tag ▲</A><a Class="MenuButton" href="default%20list%20text%20combobox%20quicklinks_hidden_ascendente_name_ascendente.html">Oculto ▲</A></div>
+      <h2><strong>Buscar</strong></h2><input type="text" id="search" placeholder="Digite o nome de um jogo para pesquisar"><br/><button onclick="search()" id="searchbutton">Buscar</button>
+      <h2><strong>Links r&#225;pidos</strong></h2>
+      <div class="quicklinks"><P id="grouplabel">Avalia&#231;&#227;o da cr&#237;tica: <select id="combobselect" onchange="window.location=this.options[this.selectedIndex].value"><option value="#quicklink-85">85 (1)</option><option value="#quicklink-68">68 (1)</option></select></P></div>
+      <h2></h2>
+      <div class="cards">
+	  <TABLE  name="gamestable" class="detailstable" id="detailstable">
+      <COLGROUP><COL WIDTH="60"><COL WIDTH="22%"><COL WIDTH="13%"><COL WIDTH="13%"><COL WIDTH="13%"><COL WIDTH="13%"><COL WIDTH="13%"><COL WIDTH="13%"></COLGROUP>
+	  <THEAD><TR><TH></TH><TH><B><a href="index.html">Nome</a></B></TH><TH><B><a href="default%20list%20text%20combobox%20quicklinks_criticscore_descendente_name_ascendente.html">Avaliação da crítica ▼</a></B></TH><TH><B><a href="">Última Atividade</a></B></TH><TH><B><a href="">Adicionado</a></B></TH><TH><B><a href="">Tempo de jogo</a></B></TH><TH><B><a href="">Fonte</a></B></TH><TH><B><a href="">Plataforma</a></B></TH></TR></THEAD>
+	  <TBODY>
+   	  </TBODY>
+<TBODY> 
+<TR id="quicklink-85"><TH colspan="8"><h2 id="h2jscript" onclick="ShowHide('85')"><strong id="eye-85" style="color: #007962;">&#x25BC;</strong><strong>85<span>( 1 )</span></strong></h2></TH></TR>
+</TBODY>
+<TBODY id="85">
+
+
+<TR>
+	<TD>1.</TD>
+	<TD class="tdname"><a href="cbf35f7d-ebd1-4e1c-8e63-d29f5d3b8064.html">Thronebreaker: The Witcher Tales</a></TD>
+	<TD><a href="default%20list%20text%20combobox%20quicklinks_criticscore_descendente_name_ascendente.html#quicklink-85">85</a></TD>
+	<TD><a href="#quicklink-No &#250;ltimo Ano">No &#250;ltimo Ano</a></TD>
+	<TD><a href="#quicklink-15/11/2024">15/11/2024</a> 20:58:41</TD>
+	<TD><a href="#quicklink-N&#227;o Jogado">N&#227;o Jogado</a></TD>
+	<TD><a href="#quicklink-GOG">GOG</a></TD>
+	<TD><a href="#quicklink-PC (Windows)">PC (Windows)</a></TD>
+</TR>
+
+
+</TBODY>
+<TBODY> 
+<TR id="quicklink-68"><TH colspan="8"><h2 id="h2jscript" onclick="ShowHide('68')"><strong id="eye-68" style="color: #007962;">&#x25BC;</strong><strong>68<span>( 1 )</span></strong></h2></TH></TR>
+</TBODY>
+<TBODY id="68">
+
+
+<TR>
+	<TD>2.</TD>
+	<TD class="tdname"><a href="457f24f5-4b97-4aa7-827c-955f290bbbc6.html">Seven: Enhanced Edition</a></TD>
+	<TD><a href="default%20list%20text%20combobox%20quicklinks_criticscore_descendente_name_ascendente.html#quicklink-68">68</a></TD>
+	<TD><a href="#quicklink-H&#225; mais de um ano">H&#225; mais de um ano</a></TD>
+	<TD><a href="#quicklink-02/10/2022">02/10/2022</a> 9:10:15</TD>
+	<TD><a href="#quicklink-2d 2h 34m 0s">2d 2h 34m 0s</a></TD>
+	<TD><a href="#quicklink-GOG">GOG</a></TD>
+	<TD><a href="#quicklink-GOG tps@l, PC (Windows)">GOG tps@l, PC (Windows)</a></TD>
+</TR>
+
+
+
+	  </TBODY>
+	  </TABLE>
+      </div>
+    </div>
+	<script>
+
+	// Get the input field
+	var input = document.getElementById("search");
+
+	// Execute a function when the user releases a key on the keyboard
+	input.addEventListener("keyup", function(event) {
+	  // Number 13 is the "Enter" key on the keyboard
+	  if (event.keyCode === 13) {
+		// Cancel the default action, if needed
+		event.preventDefault();
+		// Trigger the button element with a click
+		document.getElementById("searchbutton").click();
+	  }
+	});
+
+	//Get the button:
+	mybutton = document.getElementById("BackTopButton");
+
+	// When the user scrolls down 20px from the top of the document, show the button
+	window.onscroll = function() {scrollFunction()};
+
+	function scrollFunction() {
+	  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+		mybutton.style.display = "block";
+	  } else {
+		mybutton.style.display = "none";
+	  }
+	}
+
+	// When the user clicks on the button, scroll to the top of the document
+	function topFunction() {
+	  document.body.scrollTop = 0; // For Safari
+	  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+	}
+
+	function ShowHide(body_id){
+	var elem
+
+		elem = document.getElementById(body_id);
+		elemclick = document.getElementById("eye-" + body_id);
+		
+		if(!elem) return true;
+		if(!elemclick) return true;
+
+		if (elem.style.display == "none") {
+		  elem.style.display = "";
+		  elemclick.innerHTML = "&#x25BC;";
+		  elemclick.style.color = "#007962";
+		}
+		else
+		{
+		  elem.style.display = "none";
+		  elemclick.innerHTML = "&#x25BA;";
+		  elemclick.style.color = "#790000";
+		}
+		return true;
+	}
+   </script>
+  </body>
+</html>
